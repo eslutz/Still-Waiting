@@ -1,6 +1,25 @@
 {
   "name": "still-waiting",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Tracking app monitoring for the release of the Omnipod 5 iOS app in 2024.",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eslutz/Still-Waiting.git"
+  },
+  "keywords": [
+    "Omnipod5"
+  ],
+  "author": {
+    "name": "Eric Slutz",
+    "email": "eric@ericslutz.dev",
+    "url": "https://www.ericslutz.dev"
+  },
+  "bugs": {
+    "url": "https://github.com/eslutz/Still-Waiting/issues",
+    "email": "eric@ericslutz.dev"
+  },
+  "homepage": "https://github.com/eslutz/Still-Waiting#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
