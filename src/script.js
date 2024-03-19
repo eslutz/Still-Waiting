@@ -8,19 +8,10 @@ const timeElapsed = setInterval(function () {
             appReleased = true;
             timeSpentWaiting = computeTimeElapsed();
             clearInterval(timeElapsed);
-
-
-            console.log('The app has been released!');
-            console.log('Time spent waiting: ' + timeSpentWaiting);
-            console.log('App released: ' + appReleased);
         } else {
             timeSpentWaiting = computeTimeElapsed();
-            // Output the result in an element with id="elapsedTime".
-            document.getElementById("elapsedTime").innerHTML = timeSpentWaiting;
-
-
-            console.log('Time spent waiting: ' + timeSpentWaiting);
-            console.log('App released: ' + appReleased);
+            // Output the result in an element with id='elapsedTime'.
+            document.getElementById('elapsedTime').innerHTML = timeSpentWaiting;
         }
     });
 }, 1000);
@@ -28,7 +19,7 @@ const timeElapsed = setInterval(function () {
 // Compute the time elapsed since the start date.
 const computeTimeElapsed = () => {
     // Set the date being counting from.
-    const startDate = new Date("Jan 1, 2024 00:00:00").getTime();
+    const startDate = new Date('Jan 1, 2024 00:00:00').getTime();
 
     // Get today's date and time.
     const now = new Date().getTime();
@@ -43,7 +34,7 @@ const computeTimeElapsed = () => {
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Return the time elapsed in a formatted string.
-    return days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    return days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
 };
 
 // Search the app store for apps released by developer.
@@ -52,16 +43,17 @@ const searchAppStore = async () => {
 
     const response = fetch(url)
         .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
-        return data;
-    })
+            return data;
+        })
         .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+            console.error('There was a problem with the fetch operation:', error);
+            document.getElementById('elapsedTime').innerHTML = 'Unable to determine time elapsed. Please try again later.';
     });
 
     return response;
@@ -75,8 +67,3 @@ const isAppReleased = async () => {
 
     return appSearchResult !== undefined;
 };
-
-// TODO: create dev and prod build scripts.
-// TODO: add loading spinner while waiting for time elapsed.
-// TODO: add content and format the html page.
-// TODO: add conditional content for when the app is released.
