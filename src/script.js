@@ -52,6 +52,7 @@ const computeTimeElapsed = (date) => {
 const searchAppStore = async () => {
     const url = 'https://itunes.apple.com/search?term=Insulet&country=us&entity=software';
     const options = {
+        mode: 'cors',
         method: 'GET',
         headers: {
             'Accept': 'application/json'
