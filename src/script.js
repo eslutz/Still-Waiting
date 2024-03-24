@@ -4,7 +4,6 @@ let delayCounter = 0;
 let timeSpentWaiting;
 
 const pageLoad = setInterval(function () {
-    console.log(delayCounter);
     // Every 60 seconds, check if the app has been released.
     if (delayCounter === 0) {
         searchAppStore().then(apps => {

@@ -19,7 +19,7 @@
     "minify-html": "html-minifier-terser src/index.html --collapse-whitespace --output=dist/index.html",
     "optimize-css": "postcss src/style.css --use autoprefixer cssnano --output dist/style.css --no-map",
     "minify-js": "uglifyjs src/script.js --compress --mangle -o dist/script.js",
-    "build": "npm run minify-html && npm run optimize-css && npm run minify-js && cp -r src/assets dist/assets"
+    "build": "npm run minify-html && npm run optimize-css && npm run minify-js && cp -r src/assets dist/assets && cp CNAME dist/CNAME"
   },
   "license": "ISC",
   "bugs": {
