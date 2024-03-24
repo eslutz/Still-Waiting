@@ -2,15 +2,15 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="language" content="English">
+        <meta name="revisit-after" content="7 days">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="Eric Slutz">
         <meta name="title" content="Still Waiting: Where is the Omnipod 5 iOS app?">
         <meta name="description" content="When will the iPhone Omnipod 5 App be release? Who knows! Sometime in 2024 apparently. ">
         <meta name="keywords" content="Omnipod, Omnipod 5, Insulet, iOS, Omnipod 5 App, iPhone, insulin pump, diabetic, diabetes, type 1 diabetes, t1d">
-        <meta name="robots" content="index, follow">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="language" content="English">
-        <meta name="revisit-after" content="7 days">
-        <meta name="author" content="Eric Slutz">
 
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
@@ -24,7 +24,7 @@
             gtag('config', 'G-LGHYF8YBXD');
         </script>
     </head>
-    <body onload="timeElapsed">
+    <body onload="pageLoad">
         <section class="heading-container">
             <h1 class="heading-primary">Still Waiting</h1>
             <h2 class="heading-secondary">The Omnipod 5 iOS app story</h2>
@@ -33,9 +33,13 @@
         <section class="container">
             <p>Insulet announced that the iOS app to control the Omnipod 5 from your iPhone would launch in 2024.</p>
             <div>
-                <p>It has been</p>
+                <p id="elapsedStart">It has been...</p>
                 <p id="elapsedTime">Loading...</p>
-                <p>since the start of 2024. How much longer will we have to wait?!</p>
+                <p id="elapsedEnd">since the start of 2024. How much longer will we have to wait?!</p>
+            </div>
+            <div id="appReleased">
+                <p></p>
+                <p id="elapsedTime"></p>
             </div>
         </section>
     </body>

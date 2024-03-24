@@ -1,47 +1,65 @@
+const appName = 'Omnipod® 5 App'; // Set the app to search for.
+const apiCallDelay = 60; // Set the delay to 60 seconds.
+let delayCounter = 0;
 let timeSpentWaiting;
-let appReleased = false;
 
-// Update the count down every 1 second.
-const timeElapsed = setInterval(function () {
-    isAppReleased().then(result => {
-        if (result) {
-            appReleased = true;
-            timeSpentWaiting = computeTimeElapsed();
-            clearInterval(timeElapsed);
-        } else {
-            timeSpentWaiting = computeTimeElapsed();
-            // Output the result in an element with id='elapsedTime'.
-            document.getElementById('elapsedTime').innerHTML = timeSpentWaiting;
-        }
-    });
+const pageLoad = setInterval(function () {
+    console.log(delayCounter);
+    // Every 60 seconds, check if the app has been released.
+    if (delayCounter === 0) {
+        searchAppStore().then(apps => {
+            const app = apps.results.find(response => response.trackName === appName);
+            if (app !== undefined) {
+                timeSpentWaiting = computeTimeElapsed(new Date(app.releaseDate).getTime());
+                document.getElementById('elapsedStart').innerHTML = 'It finally happened! The app has been released and it only took';
+                document.getElementById('elapsedTime').innerHTML = timeSpentWaiting;
+                document.getElementById('elapsedEnd').innerHTML = "since the start of 2024. It's about time!";
+                clearInterval(pageLoad);
+            }
+        }).finally(() => {
+            delayCounter = apiCallDelay;
+        });
+    } else { // Update the total elapsed time every 1 second.
+        timeSpentWaiting = computeTimeElapsed();
+        document.getElementById('elapsedTime').innerHTML = timeSpentWaiting;
+        delayCounter -= 1;
+    }
 }, 1000);
 
 // Compute the time elapsed since the start date.
-const computeTimeElapsed = () => {
+const computeTimeElapsed = (date) => {
     // Set the date being counting from.
     const startDate = new Date('Jan 1, 2024 00:00:00').getTime();
 
-    // Get today's date and time.
-    const now = new Date().getTime();
+    // If no date is provided, use the current date.
+    if (date === undefined) {
+        date = new Date().getTime();
+    }
 
-    // Find the distance between now and the count down date.
-    const distance = now - startDate;
+    // Find the distance between the current or app release date and the start date.
+    const distance = date - startDate;
 
-    // Time calculations for days, hours, minutes and seconds.
+    // Time calculations for days, hours, minutes, and seconds.
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Return the time elapsed in a formatted string.
-    return days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+    return days + ' days ' + hours + ' hours ' + minutes + ' minutes ' + seconds + ' seconds';
 };
 
-// Search the app store for apps released by developer.
+// Search the app store for apps released by Insulet.
 const searchAppStore = async () => {
     const url = 'https://itunes.apple.com/search?term=Insulet&country=us&entity=software';
+    const options = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    };
 
-    const response = fetch(url)
+    const apps = fetch(url, options)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -56,14 +74,5 @@ const searchAppStore = async () => {
             document.getElementById('elapsedTime').innerHTML = 'Unable to determine time elapsed. Please try again later.';
     });
 
-    return response;
-};
-
-const isAppReleased = async () => {
-    const appName = 'Omnipod® 5 App';
-
-    const appSearchResponse = await searchAppStore();
-    const appSearchResult = appSearchResponse.results.find(result => result.trackName === appName);
-
-    return appSearchResult !== undefined;
+    return apps;
 };
