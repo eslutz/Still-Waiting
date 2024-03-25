@@ -140,3 +140,32 @@
     background-color: #eee;
     box-shadow: 0 5px 5px #eee, 0 -5px 5px #eee;
   }
+
+  /* UTILITIES */
+  .u-text-center {
+    text-align: center;
+  }
+
+  .u-text-xl {
+    font-size: 300%;
+  }
+
+  .u-text-lg {
+    font-size: 200%;
+  }
+  .u-text-md {
+    font-size: 150%;
+  }
+
+  .u-margin-top-lg {
+    margin-top: 6rem;
+  }
+
+  .u-margin-top-md {
+    margin-top: 4rem;
+  }
+
+  .u-flex-col {
+    flex-direction: column;
+    align-items: flex-start;
+  }

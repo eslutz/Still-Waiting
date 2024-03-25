@@ -16,10 +16,11 @@
     "url": "https://www.ericslutz.dev"
   },
   "scripts": {
-    "minify-html": "html-minifier-terser src/index.html --collapse-whitespace --output=dist/index.html",
+    "minify-html-index": "html-minifier-terser src/index.html --collapse-whitespace --output=dist/index.html",
+    "minify-html-404": "html-minifier-terser src/404.html --collapse-whitespace --output=dist/404.html",
     "optimize-css": "postcss src/style.css --use autoprefixer cssnano --output dist/style.css --no-map",
     "minify-js": "uglifyjs src/script.js --compress --mangle -o dist/script.js",
-    "build": "npm run minify-html && npm run optimize-css && npm run minify-js && cp -r src/assets dist/assets && cp CNAME dist/CNAME"
+    "build": "npm run minify-html-index && npm run minify-html-404 && npm run optimize-css && npm run minify-js && cp -r src/assets dist/ && cp CNAME dist/CNAME"
   },
   "license": "ISC",
   "bugs": {
