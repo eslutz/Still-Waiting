@@ -20,7 +20,7 @@
     "minify-html-404": "html-minifier-terser src/404.html --collapse-whitespace --output=dist/404.html",
     "optimize-css": "postcss src/style.css --use autoprefixer cssnano --output dist/style.css --no-map",
     "minify-js": "uglifyjs src/script.js --compress --mangle -o dist/script.js",
-    "cp-files": "cp -r src/assets dist/ && cp CNAME dist/CNAME && cp src/favicon.ico dist/favicon.ico",
+    "cp-files": "cp -r src/assets dist/ && cp CNAME dist/CNAME && cp src/favicon.ico dist/favicon.ico && cp src/apple-touch-icon.png dist/apple-touch-icon.png",
     "build": "npm run minify-html-index && npm run minify-html-404 && npm run optimize-css && npm run minify-js && npm run cp-files"
   },
   "license": "ISC",
