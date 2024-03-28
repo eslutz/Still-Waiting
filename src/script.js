@@ -71,7 +71,6 @@ const searchAppStore = async () => {
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
-            document.getElementById('elapsedTime').innerHTML = 'Unable to determine time elapsed. Please try again later.';
     });
 
     return apps;
