@@ -1,44 +1,38 @@
 {
   "name": "still-waiting",
-  "version": "1.0.0",
-  "description": "Tracking app monitoring for the release of the Omnipod 5 iOS app in 2024.",
-  "main": "index.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eslutz/Still-Waiting.git"
-  },
-  "keywords": [
-    "Omnipod5"
-  ],
-  "author": {
-    "name": "Eric Slutz",
-    "email": "eric@ericslutz.dev",
-    "url": "https://www.ericslutz.dev"
-  },
+  "version": "0.0.0",
   "scripts": {
-    "minify-html-index": "html-minifier-terser src/index.html --collapse-whitespace --output=dist/index.html",
-    "minify-html-404": "html-minifier-terser src/404.html --collapse-whitespace --output=dist/404.html",
-    "optimize-css": "postcss src/style.css --use autoprefixer cssnano --output dist/style.css --no-map",
-    "minify-js": "uglifyjs src/script.js --compress --mangle -o dist/script.js",
-    "cp-files": "cp -r src/assets dist/ && cp CNAME dist/CNAME && cp src/favicon.ico dist/favicon.ico && cp src/apple-touch-icon.png dist/apple-touch-icon.png",
-    "build": "npm run minify-html-index && npm run minify-html-404 && npm run optimize-css && npm run minify-js && npm run cp-files",
-    "prod-build": "mkdir dist && npm run minify-html-index && npm run minify-html-404 && npm run optimize-css && npm run minify-js && npm run cp-files"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/eslutz/Still-Waiting/issues",
-    "email": "eric@ericslutz.dev"
-  },
-  "homepage": "https://github.com/eslutz/Still-Waiting#readme",
-  "engines": {
-    "node": "^18.13.0 || >=20.9.0"
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^17.3.0",
+    "@angular/common": "^17.3.0",
+    "@angular/compiler": "^17.3.0",
+    "@angular/core": "^17.3.0",
+    "@angular/forms": "^17.3.0",
+    "@angular/platform-browser": "^17.3.0",
+    "@angular/platform-browser-dynamic": "^17.3.0",
+    "@angular/router": "^17.3.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.18",
-    "cssnano": "^6.1.0",
-    "html-minifier-terser": "^7.2.0",
-    "postcss": "^8.4.35",
-    "postcss-cli": "^11.0.0",
-    "uglify-js": "^3.17.4"
+    "@angular-devkit/build-angular": "^17.3.2",
+    "@angular/cli": "^17.3.2",
+    "@angular/compiler-cli": "^17.3.0",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.4.2"
   }
 }
