@@ -29,18 +29,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ vars.NODE_VERSION }}
-
       - name: Install & Update Dependencies
-        run: npm run upd-pkg-ver
+        run: |
+          cd website
+          npm run upd-pkg-ver
 
       - name: Commit & Push Changes
         run: |
           git config --global user.email "${{ vars.COMMIT_USER_EMAIL }}"
           git config --global user.name "${{ vars.COMMIT_USER_NAME }}"
           git add --update
-          git commit -m "updated project dependencies" || exit 0
+          git commit -m "updated project npm dependencies" || exit 0
           git push --force
