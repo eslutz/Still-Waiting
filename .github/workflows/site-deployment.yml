@@ -38,13 +38,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ vars.NODE_VERSION }}
 
       - name: Install dependencies
         run: npm install
 
       - name: Build Project
-        run: npm run prod-build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
