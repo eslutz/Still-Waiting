@@ -41,7 +41,7 @@ p {
 .container {
   margin: 0 auto;
   max-width: 120rem;
-  padding: 0 3.2rem;
+  padding: 3.2rem;
 }
 
 .half-width {
@@ -84,10 +84,10 @@ p {
 
 .heading-primary,
 .heading-secondary,
-.heading-tertiary,
-.heading-quaternary {
+.heading-tertiary {
   color: #767676;
   letter-spacing: -1px;
+  padding: 0 0 2rem 0;
 }
 
 .heading-primary {
@@ -98,20 +98,19 @@ p {
 }
 
 .heading-secondary {
-  font-size: 4.2rem;
+  font-size: 3.8rem;
   font-weight: 200;
   line-height: 1.2;
   padding: 0 0 0.4rem 0;
-  margin: 0 0 1.8rem 0;
+  margin: 0 0 1.2rem 0;
   border-bottom: 0.25rem solid;
 }
 
 .heading-tertiary {
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0px;
-  padding: 0 0 2.5rem 0;
 }
 
 /* LINK */
@@ -165,58 +164,32 @@ p {
   border-bottom: 0.125rem solid #c8102e;
 }
 
+.nav-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
 /**********/
 /* FOOTER */
 /**********/
-.footer {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 4.8rem 4.8rem 3.2rem 4.8rem;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
 .footer-container {
+  align-items: start;
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  width: 100%;
   margin: 0 auto;
   max-width: 120rem;
-}
-
-.footer-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 2.4rem;
-  list-style: none;
-}
-
-/* LIST */
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  list-style: none;
-}
-
-.list-item {
-  align-items: center;
-  display: flex;
-  font-size: 1.8rem;
-  gap: 1.6rem;
-}
-
-.list-icon-top {
-  align-self: flex-start;
+  padding: 2rem 3.2rem;
+  line-height: 1.5;
 }
 
 /* SECTION BACKGROUND COLOR */
 .light-bg {
-  background-color: #eee;
-  box-shadow: 0 5px 5px #eee, 0 -5px 5px #eee;
+  background-color: #ebebeb;
+  box-shadow: 0 5px 5px #ebebeb, 0 -5px 5px #ebebeb;
 }
 
 /* UTILITIES */
@@ -241,4 +214,12 @@ p {
 
 .u-margin-top-md {
   margin-top: 4rem;
+}
+
+.u-gap-sm {
+  gap: 1rem;
+}
+
+.u-gap-md {
+  gap: 2rem;
 }
