@@ -30,9 +30,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install & Update Dependencies
-        run: |
-          cd website
-          npm run upd-pkg-ver
+        run: npm run upd-pkg-ver
 
       - name: Commit & Push Changes
         run: |

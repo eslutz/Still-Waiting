@@ -36,20 +36,16 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Install dependencies
-        run: |
-          cd website
-          npm install
+        run: npm install
 
       - name: Build Project
-        run: |
-          cd website
-          npm run build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload files from the project dist folder
-          path: './website/dist/still-waiting/browser'
+          path: './dist/still-waiting/browser'
 
       - name: Deploy to GitHub Pages
         id: deployment
