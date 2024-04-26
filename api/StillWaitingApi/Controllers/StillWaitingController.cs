@@ -1,4 +1,5 @@
 using System.Net;
+using Azure.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
 using StillWaitingApi.Models;
@@ -7,9 +8,14 @@ namespace StillWaitingApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class StillWaitingController(IConfiguration configuration) : ControllerBase
+public class StillWaitingController : ControllerBase
 {
-    private readonly IConfiguration _configuration = configuration;
+    private readonly IConfiguration _configuration;
+
+    public StillWaitingController(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
 
    [HttpGet("HealthCheck", Name = "StillWaiting.HealthCheck")]
    [ProducesResponseType(200)]
@@ -29,11 +35,11 @@ public class StillWaitingController(IConfiguration configuration) : ControllerBa
     {
         if (!string.IsNullOrWhiteSpace(id))
         {
-            var connectionString = _configuration.GetValue<string>("ConnectionString");
+            var databaseUrl = _configuration.GetValue<string>("DatabaseUrl");
             var databaseName = _configuration.GetValue<string>("Database");
             var containerName = _configuration.GetValue<string>("Container");
 
-            using var dbClient = new CosmosClient(connectionString);
+            using var dbClient = new CosmosClient(databaseUrl, new DefaultAzureCredential());
             var db = dbClient.GetDatabase(databaseName);
             var container = db.GetContainer(containerName);
 
@@ -78,11 +84,11 @@ public class StillWaitingController(IConfiguration configuration) : ControllerBa
     [Produces("application/json")]
     public async Task<ActionResult<Item>> UpdateItem([FromBody] Item item)
     {
-        var connectionString = _configuration.GetValue<string>("ConnectionString");
+        var databaseUrl = _configuration.GetValue<string>("DatabaseUrl");
         var databaseName = _configuration.GetValue<string>("Database");
         var containerName = _configuration.GetValue<string>("Container");
 
-        using var dbClient = new CosmosClient(connectionString);
+        using var dbClient = new CosmosClient(databaseUrl, new DefaultAzureCredential());
         var db = dbClient.GetDatabase(databaseName);
         var container = db.GetContainer(containerName);
 
@@ -115,4 +121,22 @@ public class StillWaitingController(IConfiguration configuration) : ControllerBa
             return StatusCode(500, "Error updating item");
         }
     }
+
+    // public async Task<OmnipodItunesSearchResponse> GetItunesSearchResults()
+    // {
+    //     using var client = new HttpClient();
+    //     client.DefaultRequestHeaders.Accept.Clear();
+    //     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+    //     var response = await client.GetAsync(searchUrl);
+    //     if (response.IsSuccessStatusCode)
+    //     {
+    //         var searchResults = await response.Content.ReadFromJsonAsync<Item>();
+    //         return searchResults ?? new Item();
+    //     }
+    //     else
+    //     {
+    //         throw new Exception("Network response was not ok");
+    //     }
+    // }
 }
