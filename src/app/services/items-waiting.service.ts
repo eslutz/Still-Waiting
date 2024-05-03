@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Item } from '../models/item';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,31 @@ import { Injectable } from '@angular/core';
 export class ItemsWaitingService {
 
   constructor() { }
+
+  async getItemStatus(itemId: string): Promise<Item> {
+    const url = 'https://stillwaiting-api.azurewebsites.net/api/itemstatus';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: itemId })
+    };
+
+    const item: Promise<Item> = await fetch(url, options)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+
+    return item;
+  };
 
   // Computes and returns the time elapsed since the start date as a string.
   getTimeElapsed(date?: number): string {
