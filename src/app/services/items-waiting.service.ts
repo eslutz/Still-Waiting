@@ -10,8 +10,9 @@ export class ItemsWaitingService {
 
   async getItemStatus(itemId: string): Promise<Item> {
     const url = 'https://stillwaiting-api.azurewebsites.net/api/itemstatus';
-    const options = {
+    const options: RequestInit  = {
       method: 'POST',
+      mode: 'cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
